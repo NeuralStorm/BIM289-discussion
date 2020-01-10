@@ -13206,7 +13206,8 @@ a.anchor-link {
 $$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\downarrow{\frac{\Sigma{\text{ (columns: T)}}} {\text{T in E}}} $$
 <br>
 $$ PSTH $$
-T = trials&emsp;&emsp;N = neurons&emsp;&emsp;B = bins&emsp;&emsp;E = events</p>
+<br>
+$$\text{T = trials | N = neurons | B = bins | E = events}$$</p>
 
 </div>
 </div>
@@ -13233,31 +13234,7 @@ T = trials&emsp;&emsp;N = neurons&emsp;&emsp;B = bins&emsp;&emsp;E = events</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="JSON-Files">JSON Files<a class="anchor-link" href="#JSON-Files">&#182;</a></h1><h2 id="Matlab">Matlab<a class="anchor-link" href="#Matlab">&#182;</a></h2>
-<pre><code>% get file name and path
-% open file with fopen and load in data
-% close file and use jsondecode on the data read in from file
-example_data = jsondecode(str_data);</code></pre>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h2>
-<pre><code>import json
-# open file
-# Use load or other json functions to read in data
-example_data = json.load(file)</code></pre>
-
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="JSON-Example">JSON Example<a class="anchor-link" href="#JSON-Example">&#182;</a></h1><div class="highlight"><pre><span></span><span class="p">{</span>
+<h1 id="JSON-Example">JSON Example<a class="anchor-link" href="#JSON-Example">&#182;</a></h1><h2 id="Human-Friendly-Version-(Pretty-format)">Human Friendly Version (Pretty format)<a class="anchor-link" href="#Human-Friendly-Version-(Pretty-format)">&#182;</a></h2><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;events&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;event_1&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="mf">138.33675</span>
@@ -13268,13 +13245,60 @@ example_data = json.load(file)</code></pre>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><br></p>
-<div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">[</span><span class="s1">&#39;events&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;event_1&#39;</span><span class="p">,</span> <span class="s1">&#39;event_4&#39;</span><span class="p">]</span>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Computer-Friendly-Version">Computer Friendly Version<a class="anchor-link" href="#Computer-Friendly-Version">&#182;</a></h2><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;events&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;event_1&quot;</span><span class="p">:[</span><span class="mf">138.33675</span><span class="p">],</span><span class="nt">&quot;event_4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">42.74935</span><span class="p">]}}</span>
 </pre></div>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="JSON-Files">JSON Files<a class="anchor-link" href="#JSON-Files">&#182;</a></h1><h2 id="Matlab">Matlab<a class="anchor-link" href="#Matlab">&#182;</a></h2><p>Note: comments use # for syntax highlighting instead of Matlab's  %</p>
+<div class="highlight"><pre><span></span><span class="c1"># get file name and path</span>
+<span class="c1"># open file with fopen and load in data</span>
+<span class="c1"># close file and use jsondecode on the data read in from file</span>
+</pre></div>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c1"># jsondecode reads str_data into a struct</span>
+<span class="n">example_data</span> <span class="o">=</span> <span class="n">jsondecode</span><span class="p">(</span><span class="n">str_data</span><span class="p">);</span>
+<span class="n">neuron_names</span> <span class="o">=</span> <span class="n">fieldnames</span><span class="p">(</span><span class="n">example_data</span><span class="o">.</span><span class="n">neurons</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">neuron_i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">neuron_names</span><span class="p">)</span>
+    <span class="c1"># Get current neuron fieldname</span>
+    <span class="n">curr_neuron</span> <span class="o">=</span> <span class="n">neuron_names</span><span class="p">{</span><span class="n">neuron_i</span><span class="p">};</span>
+    <span class="c1"># Get timestamps stored in struct</span>
+    <span class="n">neuron_ts</span> <span class="o">=</span> <span class="n">example_data</span><span class="o">.</span><span class="n">neurons</span><span class="o">.</span><span class="p">(</span><span class="n">curr_neuron</span><span class="p">);</span>
+<span class="n">end</span>
+</pre></div>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="JSON-Files">JSON Files<a class="anchor-link" href="#JSON-Files">&#182;</a></h1><h2 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h2><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="c1"># open file</span>
+<span class="c1"># Use load or other json functions to read in data</span>
+<span class="n">example_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
@@ -13290,7 +13314,7 @@ example_data = json.load(file)</code></pre>
 </div>
 </div>
 
-</div><div class="fragment">
+</div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
@@ -13423,7 +13447,7 @@ dict_keys([&#39;sig001a&#39;, &#39;sig007c&#39;])
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="c1"># Post time receptive field</span>
             <span class="n">above_threshold_bins</span> <span class="o">=</span> <span class="n">post_time</span> <span class="o">&gt;</span> <span class="n">threshold</span>
-            <span class="c1"># Note: Dont forget to scale bin indeces into time</span>
+            <span class="c1"># Note: Dont forget to scale bin indices into time</span>
             <span class="n">first_bin</span> <span class="o">=</span> <span class="n">above_threshold</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">last_bin</span> <span class="o">=</span> <span class="n">above_threshold</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">peak</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">above_threshold</span><span class="p">)</span>
@@ -13445,11 +13469,10 @@ dict_keys([&#39;sig001a&#39;, &#39;sig007c&#39;])
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="What-to-turn-in">What to turn in<a class="anchor-link" href="#What-to-turn-in">&#182;</a></h1><h2 id="Conceptual-Questions-and-graphs-(10pts)">Conceptual Questions and graphs (10pts)<a class="anchor-link" href="#Conceptual-Questions-and-graphs-(10pts)">&#182;</a></h2><ul>
-<li>pdf with answers to conceptual questions and requested psths
-## Code</li>
+<li>pdf with answers to conceptual questions and requested psths and raster graphs</li>
 <li>Code files you wrote to create JSON output file</li>
 <li>Code files should be plain text with proper file extension<ul>
-<li>ex: last_first_hw1.m, last_first_hw.py, etc.</li>
+<li>ex: last_first_hw1.m, last_first_hw1.py, etc.</li>
 </ul>
 </li>
 </ul>
@@ -13460,9 +13483,10 @@ dict_keys([&#39;sig001a&#39;, &#39;sig007c&#39;])
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Json-Output-File">Json Output File<a class="anchor-link" href="#Json-Output-File">&#182;</a></h1><ul>
+<h1 id="Json-Output-File-(10pts)">Json Output File (10pts)<a class="anchor-link" href="#Json-Output-File-(10pts)">&#182;</a></h1><ul>
 <li>This file will be input into automatic grader</li>
-<li>This was taken from the example solution json<div class="highlight"><pre><span></span><span class="p">{</span>
+<li>This was taken from the example solution json and is a small snippet</li>
+<li>You are not required to turn in a pretty formatted json file<div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;event_1&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;sig001a&quot;</span><span class="p">:</span> <span class="p">{</span>
           <span class="nt">&quot;background_rate&quot;</span><span class="p">:</span> <span class="mf">0.013732394366197184</span><span class="p">,</span>
@@ -13481,10 +13505,9 @@ dict_keys([&#39;sig001a&#39;, &#39;sig007c&#39;])
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Python-Raster-Sidenote">Python Raster Sidenote<a class="anchor-link" href="#Python-Raster-Sidenote">&#182;</a></h1><p>Matplotlib raster mapping: 0 -&gt; NaN, 1 -&gt; relative time</p>
-<h2 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h2><p>Parameters: 1ms bin size from 0ms to 5ms
-$$\text{0 0 1 0 1} \rightarrow \text{NaN NaN .003 NaN .005}$$</p>
-
+<h1 id="Python-Raster-Sidenote">Python Raster Sidenote<a class="anchor-link" href="#Python-Raster-Sidenote">&#182;</a></h1><h2 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h2><p>Parameters: 1ms bin size from 0ms to 5ms
+$$\text{0 0 1 0 1} \xrightarrow{\text{transformation}} \text{NaN NaN .003 NaN .005}$$</p>
+<h3 id="Mapping">Mapping<a class="anchor-link" href="#Mapping">&#182;</a></h3>$$0 \rightarrow NaN$$$$1 \rightarrow \text{scaled time point}$$
 </div>
 </div>
 </div></section></section><section><section>
