@@ -13320,7 +13320,14 @@ $$\begin{bmatrix}0&amp;0&amp;1&amp;0&amp;1\\1&amp;0&amp;0&amp;1&amp;1\\0&amp;0&a
 <h1 id="Entropy">Entropy<a class="anchor-link" href="#Entropy">&#182;</a></h1>$$H = -\Sigma{p(r_i)log_2(p(r_i))}$$$$\text{H = entropy | r = response}$$
 </div>
 </div>
-</div></section></section><section><section>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$H = -[(0.66667 * log_2(0.66667)) + (0.33333 * log_2(0.33333))] = 0.9183$$
+</div>
+</div>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13390,7 +13397,7 @@ $$\begin{bmatrix}0&amp;0&amp;1&amp;0&amp;1\\1&amp;0&amp;0&amp;1&amp;1\\0&amp;0&a
 <h1 id="Joint-Mutual-Info">Joint Mutual Info<a class="anchor-link" href="#Joint-Mutual-Info">&#182;</a></h1><ul>
 <li>After solving for joint probabilities, solve for mutual info
 $$\Sigma_{i = 1..S}\;{p(s_i)\;\Sigma_{j = 1..R}\;{p(r_j|s_i)\;log_2[ \frac {p(r_j|s_i)} {p(r_j)} ]}}$$
-r = response (ie: bin count)
+r = response (ie: bin count)<br>
 s = stimulus (ie: event)</li>
 </ul>
 
