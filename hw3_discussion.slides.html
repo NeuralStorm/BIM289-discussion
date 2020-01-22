@@ -13202,11 +13202,7 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Roadmap">Roadmap<a class="anchor-link" href="#Roadmap">&#182;</a></h1>$$\text{Relative Response: } T \times (N * B)$$<p><br>
-$$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\downarrow{\frac{\Sigma{\text{ (columns: T)}}} {\text{T in E}}} $$
-<br>
-$$ PSTH $$
-<br>
+<h1 id="Roadmap">Roadmap<a class="anchor-link" href="#Roadmap">&#182;</a></h1>$$\text{Relative Response: } T \times (N * B)$$$$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\downarrow{\frac{\Sigma{\text{ (columns: T)}}} {\text{T in E}}} $$$$ PSTH $$<p><br>
 $$\text{T = trials | N = neurons | B = bins | E = events}$$</p>
 
 </div>
@@ -13233,7 +13229,9 @@ $$\text{T = trials | N = neurons | B = bins | E = events}$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Euclidean-Distance">Euclidean Distance<a class="anchor-link" href="#Euclidean-Distance">&#182;</a></h1>$$ distance = \sqrt{\Sigma_{b=1:totBins}(PSTH - trial)^2}$$<p>Dimensions:<br>
+<h1 id="Euclidean-Distance">Euclidean Distance<a class="anchor-link" href="#Euclidean-Distance">&#182;</a></h1><p><br>
+$$ distance = \sqrt{\Sigma_{b=1:totBins}(PSTH - trial)^2}$$
+Dimensions:<br>
 PSTH: 1 X (tot_bins $*$ Neurons)<br>
 Trial: 1 X (tot_bins $*$ Neurons)</p>
 
@@ -13287,35 +13285,62 @@ Trial: 1 X (tot_bins $*$ Neurons)</p>
 
 </div>
 </div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Classic-Confusion-Matrix">Classic Confusion Matrix<a class="anchor-link" href="#Classic-Confusion-Matrix">&#182;</a></h1><table>
+    <tr>
+        <th></th>
+        <th>Predicted Yes</th>
+        <th>Predicted No</th>
+    </tr>
+    <tr>
+        <th>True Yes</td>
+        <td>True positive</td>
+        <td>False Negative</td>
+    </tr>
+    <tr>
+        <th>True No</td>
+        <td>False Positive</td>
+        <td>True Negative</td>
+    </tr>
+</table>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Accuracy-(performance)">Accuracy (performance)<a class="anchor-link" href="#Accuracy-(performance)">&#182;</a></h3>$$Accuracy = \frac{TP + TN}{\text{tot population}}$$
+</div>
+</div>
 </div></div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="c1"># Analyze results from leave one out offline classification</span>
-<span class="n">performance</span> <span class="o">=</span> <span class="n">correct_classification</span> <span class="o">/</span> <span class="n">tot_trials</span>
-<span class="n">confusion_matrix</span> <span class="o">=</span> <span class="n">create_confusion_matrix</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">)</span>
-<span class="n">info</span> <span class="o">=</span> <span class="n">h_rows</span> <span class="o">+</span> <span class="n">h_cols</span> <span class="o">-</span> <span class="n">h_joint</span>
-</pre></div>
-
+<h3 id="Sensitivity">Sensitivity<a class="anchor-link" href="#Sensitivity">&#182;</a></h3>$$\text{True Positive Rate} = \frac{TP}{TP+FN}$$
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Specificity">Specificity<a class="anchor-link" href="#Specificity">&#182;</a></h3>$$\text{True Negative Rate} = \frac{TN}{TN+FP}$$
 </div>
 </div>
 </div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Confusion-Matrix">Confusion Matrix<a class="anchor-link" href="#Confusion-Matrix">&#182;</a></h1><p><style>
-    td {
-        padding: 10px
+<h1 id="Classification-Confusion-Matrix">Classification Confusion Matrix<a class="anchor-link" href="#Classification-Confusion-Matrix">&#182;</a></h1><p><style>
+    table {
+        border-collapse: collapse;
     }
-    .rendered_html table {
-      table-layout: fixed;
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid black !important;
-        tr { 
-          border: solid;
-          border-width: 1px 0;
-        }
+    .rendered_html table, th, td {
+        table-layout: fixed;
+        border-collapse: collapse;
+        border: 1px solid black !important;
     }
 </style></p>
 <table>
@@ -13328,31 +13353,31 @@ Trial: 1 X (tot_bins $*$ Neurons)</p>
     </tr>
     <tr>
         <th>True 1</td>
-        <td>Correct</td>
-        <td>Incorrect</td>
-        <td>Incorrect</td>
-        <td>Incorrect</td>
+        <td>40</td>
+        <td>27</td>
+        <td>2</td>
+        <td>0</td>
     </tr>
     <tr>
         <th>True 2</td>
-        <td>Incorrect</td>
-        <td>Correct</td>
-        <td>Incorrect</td>
-        <td>Incorrect</td>
+        <td>19</td>
+        <td>47</td>
+        <td>3</td>
+        <td>1</td>
     </tr>
     <tr>
         <th>True 3</td>
-        <td>Incorrect</td>
-        <td>Incorrect</td>
-        <td>Correct</td>
-        <td>Incorrect</td>
+        <td>10</td>
+        <td>6</td>
+        <td>47</td>
+        <td>18</td>
     </tr>
     <tr>
         <th>True 4</td>
-        <td>Incorrect</td>
-        <td>Incorrect</td>
-        <td>Incorrect</td>
-        <td>Correct</td>
+        <td>1</td>
+        <td>1</td>
+        <td>24</td>
+        <td>54</td>
     </tr>
 </table>
 </div>
@@ -13361,14 +13386,17 @@ Trial: 1 X (tot_bins $*$ Neurons)</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Information-Confusion">Information Confusion<a class="anchor-link" href="#Information-Confusion">&#182;</a></h1>$$I = H_a + H_b - H_{ab}$$$$H_a = \text{row entropy} | H_b = \text{col entropy} | H_{ab} = \text{joint info}$$
+<h3 id="Information-Confusion">Information Confusion<a class="anchor-link" href="#Information-Confusion">&#182;</a></h3><p><br>
+$$I = H_a + H_b - H_{ab}$$
+$$H_a = \text{row entropy} | H_b = \text{col entropy} | H_{ab} = \text{joint info}$$</p>
+
 </div>
 </div>
 </div></div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Entropy">Entropy<a class="anchor-link" href="#Entropy">&#182;</a></h1><ul>
+<h3 id="Entropy">Entropy<a class="anchor-link" href="#Entropy">&#182;</a></h3><ul>
 <li>Find probability of given row/column (p(a), p(b))</li>
 <li>Find probability of each entry in confusion matrix (p(ab))
 $$H = -\Sigma{p(a)log_2(p(a))}$$</li>
@@ -13376,7 +13404,68 @@ $$H = -\Sigma{p(a)log_2(p(a))}$$</li>
 
 </div>
 </div>
-</div></div></section></section>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Analysis-Psuedocode">Analysis Psuedocode<a class="anchor-link" href="#Analysis-Psuedocode">&#182;</a></h1><div class="highlight"><pre><span></span><span class="c1"># Analyze results from leave one out offline classification</span>
+<span class="n">performance</span> <span class="o">=</span> <span class="n">correct_classification</span> <span class="o">/</span> <span class="n">tot_trials</span>
+<span class="n">confusion_matrix</span> <span class="o">=</span> <span class="n">create_confusion_matrix</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">predicted_labels</span><span class="p">)</span>
+<span class="c1"># Calculate entropy for rows, cols, and each index in table</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">h_rows</span> <span class="o">+</span> <span class="n">h_cols</span> <span class="o">-</span> <span class="n">h_joint</span>
+</pre></div>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="What-to-turn-in">What to turn in<a class="anchor-link" href="#What-to-turn-in">&#182;</a></h1><h2 id="Conceptual-Questions-(10pts)">Conceptual Questions (10pts)<a class="anchor-link" href="#Conceptual-Questions-(10pts)">&#182;</a></h2><ul>
+<li>pdf with answers to conceptual questions</li>
+<li>Code files you wrote to create JSON output file</li>
+<li>Code files should be plain text with proper file extension<ul>
+<li>ex: last_first_hw3.m, last_first_hw3.py, etc.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Json-Output-File-(10pts)">Json Output File (10pts)<a class="anchor-link" href="#Json-Output-File-(10pts)">&#182;</a></h1><ul>
+<li>This file will be input into automatic grader</li>
+<li>This was taken from the example solution json and is a small snippet</li>
+<li>You are not required to turn in a pretty formatted json file<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;bin_200ms&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;performance&quot;</span><span class="p">:</span> <span class="mf">0.6266666666666667</span><span class="p">,</span>
+      <span class="nt">&quot;confusion_matrix&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">[</span>
+              <span class="mi">40</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span>
+          <span class="p">],</span>
+          <span class="p">[</span>
+              <span class="mi">19</span><span class="p">,</span><span class="mi">47</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span>
+          <span class="p">],</span>
+          <span class="p">[</span>
+              <span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">47</span><span class="p">,</span><span class="mi">18</span>
+          <span class="p">],</span>
+          <span class="p">[</span>
+              <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">54</span>
+          <span class="p">]</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;mutual_info&quot;</span><span class="p">:</span> <span class="mf">0.7499828172100611</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section>
 </div>
 </div>
 
