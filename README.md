@@ -1,7 +1,7 @@
 # BIM298-discussion
 
-## Converting Jupyter Notebook to pdf
-`jupyter nbconvert <ipynb file> --to latex`
+## Converting Jupyter Notebook to pdf with embedded images
+`jupyter nbconvert <ipynb file> --to latex`  
 `tectonic <tex file created above>`
 
 ### Dependencies for converting to pdf
